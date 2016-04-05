@@ -21,3 +21,8 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    support_version = '23.2.1'
+    junit_version = '4.12'
+}
