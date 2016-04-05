@@ -24,4 +24,5 @@ dependencies {
     testCompile "junit:junit:$rootProject.junit_version"
     compile "com.android.support:appcompat-v7:$rootProject.support_version"
     compile "com.android.support:design:$rootProject.support_version"
+    compile "com.android.support:recyclerview-v7:$rootProject.support_version"
 }

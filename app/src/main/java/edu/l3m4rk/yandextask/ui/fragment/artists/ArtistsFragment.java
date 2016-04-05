@@ -10,6 +10,13 @@ import edu.l3m4rk.yandextask.ui.fragment.BaseFragment;
 
 public class ArtistsFragment extends BaseFragment {
 
+    public static ArtistsFragment newInstance() {
+        Bundle args = new Bundle();
+        ArtistsFragment fragment = new ArtistsFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     public ArtistsFragment() {
     }
 
