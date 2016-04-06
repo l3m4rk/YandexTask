@@ -4,17 +4,35 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import edu.l3m4rk.yandextask.R;
 import edu.l3m4rk.yandextask.model.db.Artist;
+import edu.l3m4rk.yandextask.util.StringUtils;
 
 public final class ArtistListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Artist> mArtists;
+    private final List<Artist> mArtists;
 
-    // TODO: 06.04.16 realize adapter
+    public ArtistListAdapter() {
+        mArtists = new ArrayList<>();
+    }
+
+    public void addArtists(List<Artist> artists) {
+        mArtists.addAll(artists);
+        notifyDataSetChanged();
+    }
+
+    public void update(List<Artist> artists) {
+        mArtists.clear();
+        mArtists.addAll(artists);
+        notifyDataSetChanged();
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -38,12 +56,24 @@ public final class ArtistListAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     private static class ItemViewHolder extends RecyclerView.ViewHolder {
 
+        @Bind(R.id.artist_name)
+        TextView mArtistName;
+        @Bind(R.id.artist_albums_songs)
+        TextView mAlbumsSongs;
+        @Bind(R.id.artist_genres)
+        TextView mGenres;
+
         public ItemViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         public void bind(Artist artist) {
-            // TODO: 06.04.16 bind artist
+            mArtistName.setText(artist.getName());
+            final int albums = artist.getAlbumsCount();
+            final int tracks = artist.getTracksCount();
+            mAlbumsSongs.setText(StringUtils.formatAlbumsAndTracks(albums, tracks));
+            mGenres.setText(StringUtils.formatGenres(artist.getGenres()));
         }
     }
 }

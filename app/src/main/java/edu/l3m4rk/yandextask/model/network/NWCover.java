@@ -1,7 +1,19 @@
 package edu.l3m4rk.yandextask.model.network;
 
-/**
- * Created by l3m4rk on 07.04.16.
- */
-public class NWCover {
+import com.google.gson.annotations.SerializedName;
+
+public final class NWCover {
+
+    @SerializedName("small")
+    private String mSmallCoverUrl;
+    @SerializedName("big")
+    private String mBigCoverUrl;
+
+    public String getSmallCoverUrl() {
+        return mSmallCoverUrl;
+    }
+
+    public String getBigCoverUrl() {
+        return mBigCoverUrl;
+    }
 }
