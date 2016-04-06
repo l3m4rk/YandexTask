@@ -17,6 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
 }
 
 dependencies {
@@ -25,4 +31,5 @@ dependencies {
     compile "com.android.support:appcompat-v7:$rootProject.support_version"
     compile "com.android.support:design:$rootProject.support_version"
     compile "com.android.support:recyclerview-v7:$rootProject.support_version"
+    compile "com.jakewharton:butterknife:$rootProject.butter_knife_version"
 }
