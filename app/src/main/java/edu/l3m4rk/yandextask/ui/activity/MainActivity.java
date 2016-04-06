@@ -14,12 +14,16 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+        initToolbar();
         if (savedInstanceState == null) {
             changeFragment(ArtistsFragment.newInstance(), false);
         }
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.artists_title);
     }
 
     private void changeFragment(Fragment fragment, boolean addToBackStack) {
