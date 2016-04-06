@@ -32,4 +32,6 @@ dependencies {
     compile "com.android.support:design:$rootProject.support_version"
     compile "com.android.support:recyclerview-v7:$rootProject.support_version"
     compile "com.jakewharton:butterknife:$rootProject.butter_knife_version"
+    compile "com.squareup.retrofit2:retrofit:$rootProject.retrofit_version"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofit_version"
 }
