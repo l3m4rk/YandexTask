@@ -7,15 +7,15 @@ import java.util.List;
 public final class NWArtist {
 
     @SerializedName("id")
-    private long mId;
+    private Long mId;
     @SerializedName("name")
     private String mName;
     @SerializedName("genres")
     private List<String> mGenres;
     @SerializedName("tracks")
-    private int mTracksCount;
+    private Integer mTracksCount;
     @SerializedName("albums")
-    private int mAlbumsCount;
+    private Integer mAlbumsCount;
     @SerializedName("link")
     private String mLink;
     @SerializedName("description")

@@ -5,7 +5,6 @@ import java.util.List;
 public final class Artist {
 
     // TODO: 06.04.16 realize model class.
-    // TODO: 06.04.16 realize network model class
     // TODO: 06.04.16 realize mapper
 
     private long mId;
