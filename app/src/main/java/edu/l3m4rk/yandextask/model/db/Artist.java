@@ -17,7 +17,9 @@ public final class Artist {
     private String mSmallCoverUrl;
     private String mBigCoverUrl;
 
-    public Artist(long id, String name, int tracksCount, int albumsCount, String link, String description, List<String> genres, String smallCoverUrl, String bigCoverUrl) {
+    public Artist(long id, String name, int tracksCount, int albumsCount, String link,
+                  String description, List<String> genres,
+                  String smallCoverUrl, String bigCoverUrl) {
         mId = id;
         mName = name;
         mTracksCount = tracksCount;

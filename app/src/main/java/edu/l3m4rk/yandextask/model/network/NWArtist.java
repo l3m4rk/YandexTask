@@ -23,7 +23,7 @@ public final class NWArtist {
     @SerializedName("cover")
     private NWCover mCover;
 
-    public long getId() {
+    public Long getId() {
         return mId;
     }
 
@@ -35,11 +35,11 @@ public final class NWArtist {
         return mGenres;
     }
 
-    public int getTracksCount() {
+    public Integer getTracksCount() {
         return mTracksCount;
     }
 
-    public int getAlbumsCount() {
+    public Integer getAlbumsCount() {
         return mAlbumsCount;
     }
 

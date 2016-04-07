@@ -3,5 +3,5 @@
     <string name="app_name">YandexTask</string>
     <string name="action_settings">Настройки</string>
     <string name="artists_title">Исполнители</string>
-    <string name="artist_item_albums_songs">%d альбомов, %d песен</string>
+    <string name="artist_item_albums_songs">%1$d альбомов, %2$d песен</string>
 </resources>

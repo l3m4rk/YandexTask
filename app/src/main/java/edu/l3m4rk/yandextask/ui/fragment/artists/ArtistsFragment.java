@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.l3m4rk.yandextask.R;
+import edu.l3m4rk.yandextask.controller.adapter.ArtistListAdapter;
 import edu.l3m4rk.yandextask.ui.fragment.BaseFragment;
 
 public class ArtistsFragment extends BaseFragment {
@@ -20,6 +21,7 @@ public class ArtistsFragment extends BaseFragment {
     RecyclerView mArtistsView;
     @Bind(R.id.artist_list_empty)
     View mLoadErrorView;
+    private ArtistListAdapter mAdapter;
 
     public ArtistsFragment() {
     }
@@ -49,7 +51,8 @@ public class ArtistsFragment extends BaseFragment {
         mArtistsView.setLayoutManager(new LinearLayoutManager(getContext()));
         mArtistsView.setHasFixedSize(true);
         mArtistsView.setItemAnimator(new DefaultItemAnimator());
-//        mArtistsView.setAdapter();
+        mAdapter = new ArtistListAdapter();
+        mArtistsView.setAdapter(mAdapter);
     }
 
     @Override
