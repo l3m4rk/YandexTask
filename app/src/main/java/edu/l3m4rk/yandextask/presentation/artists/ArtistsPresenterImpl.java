@@ -39,11 +39,10 @@ public final class ArtistsPresenterImpl implements ArtistsPresenter {
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 mArtistsView.hideProgress();
                 if (response.isSuccessful()) {
-                    // TODO: 08.04.16 refactoring with Stream
                     List<NWArtist> loadArtists = DataMapper.convert(response.body());
                     List<Artist> artists = ArtistMapper.transform(loadArtists);
                     if (artists.isEmpty()) {
-                        mArtistsView.showError("Пусто");
+                        mArtistsView.showEmpty();
                     } else {
                         mArtistsView.showArtists(artists);
                     }

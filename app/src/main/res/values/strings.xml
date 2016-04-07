@@ -6,4 +6,5 @@
     <string name="error_network_connection">Network connection error</string>
     <string name="retry_title">Try again</string>
     <string name="error_artists_loading">Artists loading failed</string>
+    <string name="dialog_loading">Loading…</string>
 </resources>

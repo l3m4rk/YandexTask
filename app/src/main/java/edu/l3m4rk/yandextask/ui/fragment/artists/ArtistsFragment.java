@@ -56,9 +56,13 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initArtistsView();
-        mProgressDialog = new ProgressDialog(getContext());
-        mProgressDialog.setMessage("Loading...");
+        initProgressDialog();
         mArtistsPresenter = new ArtistsPresenterImpl(this);
+    }
+
+    private void initProgressDialog() {
+        mProgressDialog = new ProgressDialog(getContext());
+        mProgressDialog.setMessage(getContext().getString(R.string.dialog_loading));
     }
 
     private void initArtistsView() {
@@ -97,7 +101,7 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
 
     @Override
     public void showEmpty() {
-
+        // TODO: 08.04.16 show empty view
     }
 
     @Override

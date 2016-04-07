@@ -7,4 +7,5 @@
     <string name="error_network_connection">Ошибка подключения к сети</string>
     <string name="retry_title">Ещё раз</string>
     <string name="error_artists_loading">Не удалось загрузить список исполнителей</string>
+    <string name="dialog_loading">Загрузка…</string>
 </resources>
