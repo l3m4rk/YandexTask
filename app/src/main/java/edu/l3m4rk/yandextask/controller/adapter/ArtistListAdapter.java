@@ -54,7 +54,7 @@ public final class ArtistListAdapter extends RecyclerView.Adapter<RecyclerView.V
         return mArtists.size();
     }
 
-    private static class ItemViewHolder extends RecyclerView.ViewHolder {
+    static class ItemViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.artist_name)
         TextView mArtistName;
