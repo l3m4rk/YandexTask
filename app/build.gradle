@@ -40,4 +40,6 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$rootProject.retrofit_version"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofit_version"
     compile "com.annimon:stream:$rootProject.stream_version"
+    compile "com.squareup.okhttp3:okhttp:$rootProject.okhttp_version"
+    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp_version"
 }
