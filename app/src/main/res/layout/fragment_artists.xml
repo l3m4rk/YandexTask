@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.artists.ArtistsFragment"
-    tools:showIn="@layout/activity_main">
+    tools:context=".ui.fragment.artists.ArtistsFragment">
 
     <RelativeLayout
         android:id="@+id/artist_list_empty"
@@ -23,14 +22,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Не удалось загрузить список исполнителей"
+                android:text="@string/error_artists_loading"
                 />
 
             <Button
+                android:id="@+id/retry"
                 style="@style/Button.Retry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ещё раз"
+                android:text="@string/retry_title"
                 />
         </LinearLayout>
     </RelativeLayout>

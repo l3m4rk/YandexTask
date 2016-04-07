@@ -1,7 +1,11 @@
 package edu.l3m4rk.yandextask.model;
 
-/**
- * Created by l3m4rk on 07.04.16.
- */
-public interface Repository {
+public interface Repository<T> {
+
+    void add(T item);
+
+    void add(Iterable<T> items);
+
+//    List<T> query(Specification specification);
+
 }

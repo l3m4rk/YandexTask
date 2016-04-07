@@ -1,14 +1,12 @@
 package edu.l3m4rk.yandextask.controller.network.api.response;
 
-import java.util.List;
-
-import edu.l3m4rk.yandextask.model.network.NWArtist;
+import com.google.gson.JsonArray;
 
 public final class ArtistsResponse {
 
-    private List<NWArtist> mArtists;
+    private JsonArray mArtists;
 
-    public List<NWArtist> getArtists() {
+    public JsonArray getArtists() {
         return mArtists;
     }
 }

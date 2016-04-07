@@ -42,4 +42,5 @@ dependencies {
     compile "com.annimon:stream:$rootProject.stream_version"
     compile "com.squareup.okhttp3:okhttp:$rootProject.okhttp_version"
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp_version"
+    compile "com.squareup.picasso:picasso:$rootProject.picasso_version"
 }

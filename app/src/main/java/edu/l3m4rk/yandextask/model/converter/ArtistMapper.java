@@ -42,7 +42,7 @@ public final class ArtistMapper {
     public static List<Artist> transform(Collection<NWArtist> artistCollection) {
         List<Artist> artistList = new ArrayList<>();
         if (artistCollection != null) {
-            Stream.of(artistCollection)
+            artistList = Stream.of(artistCollection)
                     .filter(it -> it != null)
                     .map(ArtistMapper::transform)
                     .collect(Collectors.toList());

@@ -4,13 +4,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import edu.l3m4rk.yandextask.App;
 import edu.l3m4rk.yandextask.R;
 import edu.l3m4rk.yandextask.model.db.Artist;
 import edu.l3m4rk.yandextask.util.StringUtils;
@@ -56,6 +60,8 @@ public final class ArtistListAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     static class ItemViewHolder extends RecyclerView.ViewHolder {
 
+        @Bind(R.id.artist_small)
+        ImageView mSmallImage;
         @Bind(R.id.artist_name)
         TextView mArtistName;
         @Bind(R.id.artist_albums_songs)
@@ -69,6 +75,8 @@ public final class ArtistListAdapter extends RecyclerView.Adapter<RecyclerView.V
         }
 
         public void bind(Artist artist) {
+            final String smallCoverUrl = artist.getSmallCoverUrl();
+            Picasso.with(App.getContext()).load(smallCoverUrl).into(mSmallImage);
             mArtistName.setText(artist.getName());
             final int albums = artist.getAlbumsCount();
             final int tracks = artist.getTracksCount();
