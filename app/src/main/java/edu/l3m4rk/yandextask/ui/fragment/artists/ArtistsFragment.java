@@ -1,6 +1,7 @@
 package edu.l3m4rk.yandextask.ui.fragment.artists;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,13 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.l3m4rk.yandextask.R;
 import edu.l3m4rk.yandextask.controller.adapter.ArtistListAdapter;
+import edu.l3m4rk.yandextask.model.db.Artist;
+import edu.l3m4rk.yandextask.presentation.view.ArtistsView;
 import edu.l3m4rk.yandextask.ui.fragment.BaseFragment;
 
-public class ArtistsFragment extends BaseFragment {
+public class ArtistsFragment extends BaseFragment implements ArtistsView {
 
     @Bind(R.id.artist_list)
     RecyclerView mArtistsView;
@@ -60,5 +65,36 @@ public class ArtistsFragment extends BaseFragment {
         super.onStart();
         mArtistsView.setVisibility(View.VISIBLE);
         mLoadErrorView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showArtists(@NonNull List<Artist> artists) {
+
+    }
+
+    @Override
+    public void showLoadError(@NonNull String message) {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 }
