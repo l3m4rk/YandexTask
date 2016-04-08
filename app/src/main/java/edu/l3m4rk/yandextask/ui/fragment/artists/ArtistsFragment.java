@@ -58,6 +58,7 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
         super.onActivityCreated(savedInstanceState);
         initArtistsView();
         initProgressDialog();
+        initTitle(getString(R.string.artists_title));
         mArtistsPresenter = new ArtistsPresenterImpl(this);
     }
 

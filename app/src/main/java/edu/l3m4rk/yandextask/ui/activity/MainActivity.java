@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import edu.l3m4rk.yandextask.R;
 import edu.l3m4rk.yandextask.ui.fragment.artists.ArtistsFragment;
 
-public class MainActivity extends BaseActivity {
+public final class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,6 @@ public class MainActivity extends BaseActivity {
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.artists_title);
     }
 
     private void changeFragment(Fragment fragment, boolean addToBackStack) {
