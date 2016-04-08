@@ -108,7 +108,6 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
 
     @Override
     public void showProgress() {
-        // TODO: 08.04.16 show progress dialog
         mProgressDialog.show();
     }
 

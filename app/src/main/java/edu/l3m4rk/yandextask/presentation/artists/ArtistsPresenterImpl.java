@@ -33,6 +33,7 @@ public final class ArtistsPresenterImpl implements ArtistsPresenter {
     @Override
     public void loadArtists() {
         mArtistsView.showProgress();
+        // TODO: 08.04.16 remove loading in repository
         Call<JsonArray> artistsCall = mServerApi.getArtists();
         artistsCall.enqueue(new Callback<JsonArray>() {
             @Override
