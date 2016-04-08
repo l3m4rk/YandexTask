@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:foreground="?selectableItemBackground"
+    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:id="@+id/artist_small"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_margin="16dp"
+        android:contentDescription="@null"
+        android:src="@mipmap/ic_launcher"
+        />
+
+    <TextView
+        android:id="@+id/artist_name"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_toEndOf="@+id/artist_small"
+        tools:text="Bonobo"
+        />
+
+    <TextView
+        android:id="@+id/artist_genres"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/artist_name"
+        android:layout_toEndOf="@+id/artist_small"
+        tools:text="dance, electronics"
+        />
+
+    <TextView
+        android:id="@+id/artist_albums_songs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        tools:text="8 альбомов, 95 песен"
+        android:layout_alignBottom="@+id/artist_small"
+        android:layout_toRightOf="@+id/artist_small"
+        android:layout_toEndOf="@+id/artist_small"/>
+
+</RelativeLayout>
