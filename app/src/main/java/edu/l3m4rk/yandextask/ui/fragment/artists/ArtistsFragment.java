@@ -23,6 +23,7 @@ import edu.l3m4rk.yandextask.presentation.artists.ArtistsPresenter;
 import edu.l3m4rk.yandextask.presentation.artists.ArtistsPresenterImpl;
 import edu.l3m4rk.yandextask.presentation.view.ArtistsView;
 import edu.l3m4rk.yandextask.ui.fragment.BaseFragment;
+import edu.l3m4rk.yandextask.ui.view.DividerItemDecoration;
 
 public final class ArtistsFragment extends BaseFragment implements ArtistsView {
 
@@ -71,6 +72,7 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
         mArtistsView.setItemAnimator(new DefaultItemAnimator());
         mAdapter = new ArtistListAdapter();
         mArtistsView.setAdapter(mAdapter);
+        mArtistsView.addItemDecoration(new DividerItemDecoration(getContext()));
     }
 
     @Override
