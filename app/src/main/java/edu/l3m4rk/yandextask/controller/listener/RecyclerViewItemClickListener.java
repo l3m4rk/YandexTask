@@ -15,7 +15,7 @@ public final class RecyclerViewItemClickListener implements OnItemTouchListener 
     private final OnItemClickListener mListener;
 
     public interface OnItemClickListener {
-        void onItemClick(@NonNull View view, int i);
+        void onItemClick(@NonNull View view, int position);
     }
 
     private static class UpSimpleOnGestureListener extends SimpleOnGestureListener {
