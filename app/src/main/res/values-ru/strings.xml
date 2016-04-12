@@ -8,4 +8,6 @@
     <string name="retry_title">Ещё раз</string>
     <string name="error_artists_loading">Не удалось загрузить список исполнителей</string>
     <string name="dialog_loading">Загрузка…</string>
+    <string name="artist_details_bio">Биография</string>
+    <string name="artist_details_albums_songs">%1$d альбомов  \u2022  %2$d песен</string>
 </resources>

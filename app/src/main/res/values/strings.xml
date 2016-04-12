@@ -7,4 +7,6 @@
     <string name="retry_title">Try again</string>
     <string name="error_artists_loading">Artists loading failed</string>
     <string name="dialog_loading">Loading…</string>
+    <string name="artist_details_bio">Biography</string>
+    <string name="artist_details_albums_songs">%1$d albums  \u2022  %2$d songs</string>
 </resources>

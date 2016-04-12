@@ -2,19 +2,25 @@ package edu.l3m4rk.yandextask.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
 import edu.l3m4rk.yandextask.R;
+import edu.l3m4rk.yandextask.ui.fragment.artist_details.ArtistDetailsFragment;
 import edu.l3m4rk.yandextask.ui.fragment.artists.ArtistsFragment;
 
-public class MainActivity extends BaseActivity {
+public final class MainActivity extends BaseActivity
+        implements ArtistsFragment.OnItemSelectedListener,
+        FragmentManager.OnBackStackChangedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initToolbar();
+        getSupportFragmentManager().addOnBackStackChangedListener(this);
         if (savedInstanceState == null) {
             changeFragment(ArtistsFragment.newInstance(), false);
         }
@@ -23,7 +29,6 @@ public class MainActivity extends BaseActivity {
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.artists_title);
     }
 
     private void changeFragment(Fragment fragment, boolean addToBackStack) {
@@ -35,4 +40,18 @@ public class MainActivity extends BaseActivity {
         ft.commit();
     }
 
+    @Override
+    public void onItemSelected(long selectedId) {
+        changeFragment(ArtistDetailsFragment.newInstance(selectedId), true);
+    }
+
+    @Override
+    public void onBackStackChanged() {
+        FragmentManager fm = getSupportFragmentManager();
+        ActionBar toolbar = getSupportActionBar();
+        final boolean showHomeAsUp = fm.getBackStackEntryCount() > 0;
+        if (toolbar != null) {
+            toolbar.setDisplayHomeAsUpEnabled(showHomeAsUp);
+        }
+    }
 }

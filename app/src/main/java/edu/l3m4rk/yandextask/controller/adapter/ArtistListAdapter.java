@@ -27,15 +27,14 @@ public final class ArtistListAdapter extends RecyclerView.Adapter<RecyclerView.V
         mArtists = new ArrayList<>();
     }
 
-    public void addArtists(List<Artist> artists) {
-        mArtists.addAll(artists);
-        notifyDataSetChanged();
-    }
-
     public void update(List<Artist> artists) {
         mArtists.clear();
         mArtists.addAll(artists);
         notifyDataSetChanged();
+    }
+
+    public Artist getItemAt(int position) {
+        return mArtists.get(position);
     }
 
     @Override

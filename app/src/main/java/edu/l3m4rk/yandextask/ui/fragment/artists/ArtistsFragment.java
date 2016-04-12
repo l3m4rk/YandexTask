@@ -1,6 +1,7 @@
 package edu.l3m4rk.yandextask.ui.fragment.artists;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.l3m4rk.yandextask.R;
 import edu.l3m4rk.yandextask.controller.adapter.ArtistListAdapter;
+import edu.l3m4rk.yandextask.controller.listener.RecyclerViewItemClickListener;
 import edu.l3m4rk.yandextask.model.db.Artist;
 import edu.l3m4rk.yandextask.presentation.artists.ArtistsPresenter;
 import edu.l3m4rk.yandextask.presentation.artists.ArtistsPresenterImpl;
@@ -27,6 +29,8 @@ import edu.l3m4rk.yandextask.ui.view.DividerItemDecoration;
 
 public final class ArtistsFragment extends BaseFragment implements ArtistsView {
 
+    private static final String TAG = "ArtistsFragment";
+
     @Bind(R.id.artist_list)
     RecyclerView mArtistsView;
     @Bind(R.id.artist_list_empty)
@@ -34,6 +38,11 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
     private ArtistListAdapter mAdapter;
     private ArtistsPresenter mArtistsPresenter;
     private ProgressDialog mProgressDialog;
+    private OnItemSelectedListener mListener;
+
+    public interface OnItemSelectedListener {
+        void onItemSelected(long selectedId);
+    }
 
     public ArtistsFragment() {
     }
@@ -43,6 +52,17 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
         ArtistsFragment fragment = new ArtistsFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnItemSelectedListener) {
+            mListener = (OnItemSelectedListener) context;
+        } else {
+            throw new ClassCastException(context.getPackageName() +
+                    " must implements OnItemSelectedListener");
+        }
     }
 
     @Override
@@ -58,12 +78,14 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
         super.onActivityCreated(savedInstanceState);
         initArtistsView();
         initProgressDialog();
+        initTitle(getString(R.string.artists_title));
         mArtistsPresenter = new ArtistsPresenterImpl(this);
     }
 
     private void initProgressDialog() {
         mProgressDialog = new ProgressDialog(getContext());
         mProgressDialog.setMessage(getContext().getString(R.string.dialog_loading));
+        mProgressDialog.setCancelable(false);
     }
 
     private void initArtistsView() {
@@ -73,6 +95,16 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
         mAdapter = new ArtistListAdapter();
         mArtistsView.setAdapter(mAdapter);
         mArtistsView.addItemDecoration(new DividerItemDecoration(getContext()));
+        mArtistsView.addOnItemTouchListener(getListener());
+    }
+
+    @NonNull
+    private RecyclerViewItemClickListener getListener() {
+        return new RecyclerViewItemClickListener(getContext(), (View view, int position) -> {
+            final Artist selectedItem = mAdapter.getItemAt(position);
+            final long selectedId = selectedItem.getId();
+            mListener.onItemSelected(selectedId);
+        });
     }
 
     @Override
@@ -120,6 +152,12 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
     public void showError(@NonNull String message) {
         // TODO: 08.04.16 show error dialog
         showToastMessage(message);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
 
     @Override
