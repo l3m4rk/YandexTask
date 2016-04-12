@@ -85,7 +85,7 @@ public final class ArtistDetailsFragment extends BaseFragment implements ArtistD
     @Override
     public void onStart() {
         super.onStart();
-        mPresenter.loadArtistDetails();
+        mPresenter.loadArtistDetails(mArtistId);
     }
 
     @Override

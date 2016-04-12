@@ -4,12 +4,12 @@ import java.util.List;
 
 public interface Repository<T> {
 
-    void add(T item);
-
-    void add(Iterable<T> items);
+    void add(List<T> items);
 
     List<T> getAll();
 
     T get(long id);
+
+    boolean isEmpty();
 
 }

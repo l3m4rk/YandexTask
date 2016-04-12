@@ -22,12 +22,7 @@ public final class ArtistRealmRepository implements Repository<Artist> {
     }
 
     @Override
-    public void add(Artist item) {
-
-    }
-
-    @Override
-    public void add(Iterable<Artist> items) {
+    public void add(List<Artist> items) {
 
     }
 
@@ -41,5 +36,10 @@ public final class ArtistRealmRepository implements Repository<Artist> {
     @Override
     public Artist get(long id) {
         return null;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
     }
 }

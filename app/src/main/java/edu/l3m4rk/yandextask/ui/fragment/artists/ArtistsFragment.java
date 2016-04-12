@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.l3m4rk.yandextask.R;
 import edu.l3m4rk.yandextask.controller.adapter.ArtistListAdapter;
-import edu.l3m4rk.yandextask.controller.db.ArtistHolder;
 import edu.l3m4rk.yandextask.controller.listener.RecyclerViewItemClickListener;
 import edu.l3m4rk.yandextask.model.db.Artist;
 import edu.l3m4rk.yandextask.presentation.artists.ArtistsPresenter;
@@ -87,6 +85,7 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
     private void initProgressDialog() {
         mProgressDialog = new ProgressDialog(getContext());
         mProgressDialog.setMessage(getContext().getString(R.string.dialog_loading));
+        mProgressDialog.setCancelable(false);
     }
 
     private void initArtistsView() {
@@ -103,9 +102,7 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
     private RecyclerViewItemClickListener getListener() {
         return new RecyclerViewItemClickListener(getContext(), (View view, int position) -> {
             final Artist selectedItem = mAdapter.getItemAt(position);
-            ArtistHolder.getInstance().save(selectedItem);
             final long selectedId = selectedItem.getId();
-            Log.i(TAG, "getListener: id " + selectedId);
             mListener.onItemSelected(selectedId);
         });
     }
