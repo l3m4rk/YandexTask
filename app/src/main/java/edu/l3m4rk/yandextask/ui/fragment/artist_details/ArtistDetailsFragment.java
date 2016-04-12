@@ -15,8 +15,9 @@ import com.squareup.picasso.Picasso;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.l3m4rk.yandextask.R;
-import edu.l3m4rk.yandextask.controller.db.ArtistHolder;
 import edu.l3m4rk.yandextask.model.db.Artist;
+import edu.l3m4rk.yandextask.presentation.artist_details.ArtistDetailsPresenter;
+import edu.l3m4rk.yandextask.presentation.artist_details.ArtistDetailsPresenterImpl;
 import edu.l3m4rk.yandextask.presentation.view.ArtistDetailsView;
 import edu.l3m4rk.yandextask.ui.fragment.BaseFragment;
 import edu.l3m4rk.yandextask.util.StringUtils;
@@ -25,8 +26,6 @@ public final class ArtistDetailsFragment extends BaseFragment implements ArtistD
 
     private static final String TAG = "ArtistDetailsFragment";
     private static final String PARAM_ARTIST_ID = "ARTIST_ID";
-    private long mArtistId;
-
     @Bind(R.id.artist_detail_big_photo)
     ImageView mArtistBigImage;
     @Bind(R.id.artist_description)
@@ -35,6 +34,9 @@ public final class ArtistDetailsFragment extends BaseFragment implements ArtistD
     TextView mGenres;
     @Bind(R.id.artist_albums_songs)
     TextView mAlbumsSongs;
+
+    private long mArtistId;
+    private ArtistDetailsPresenter mPresenter;
 
     public ArtistDetailsFragment() {
     }
@@ -77,7 +79,17 @@ public final class ArtistDetailsFragment extends BaseFragment implements ArtistD
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Artist artist = ArtistHolder.getInstance().load();
+        mPresenter = new ArtistDetailsPresenterImpl(ArtistDetailsFragment.this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mPresenter.loadArtistDetails();
+    }
+
+    @Override
+    public void showArtistDetails(@NonNull Artist artist) {
         initTitle(artist.getName());
         Picasso.with(getContext()).load(artist.getBigCoverUrl()).into(mArtistBigImage);
         mGenres.setText(StringUtils.formatGenres(artist.getGenres()));
@@ -85,11 +97,6 @@ public final class ArtistDetailsFragment extends BaseFragment implements ArtistD
         final int tracks = artist.getTracksCount();
         mAlbumsSongs.setText(StringUtils.formatAlbumsAndTracksDetails(albums, tracks));
         mArtistBio.setText(artist.getDescription());
-    }
-
-    @Override
-    public void showArtistDetails(@NonNull Artist artist) {
-
     }
 
     @Override
