@@ -7,18 +7,34 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.l3m4rk.yandextask.R;
+import edu.l3m4rk.yandextask.controller.db.ArtistHolder;
 import edu.l3m4rk.yandextask.model.db.Artist;
 import edu.l3m4rk.yandextask.presentation.view.ArtistDetailsView;
 import edu.l3m4rk.yandextask.ui.fragment.BaseFragment;
+import edu.l3m4rk.yandextask.util.StringUtils;
 
 public final class ArtistDetailsFragment extends BaseFragment implements ArtistDetailsView {
 
     private static final String TAG = "ArtistDetailsFragment";
     private static final String PARAM_ARTIST_ID = "ARTIST_ID";
     private long mArtistId;
+
+    @Bind(R.id.artist_detail_big_photo)
+    ImageView mArtistBigImage;
+    @Bind(R.id.artist_description)
+    TextView mArtistBio;
+    @Bind(R.id.artist_genres)
+    TextView mGenres;
+    @Bind(R.id.artist_albums_songs)
+    TextView mAlbumsSongs;
 
     public ArtistDetailsFragment() {
     }
@@ -61,7 +77,14 @@ public final class ArtistDetailsFragment extends BaseFragment implements ArtistD
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initTitle("Артист " + mArtistId);
+        Artist artist = ArtistHolder.getInstance().load();
+        initTitle(artist.getName());
+        Picasso.with(getContext()).load(artist.getBigCoverUrl()).into(mArtistBigImage);
+        mGenres.setText(StringUtils.formatGenres(artist.getGenres()));
+        final int albums = artist.getAlbumsCount();
+        final int tracks = artist.getTracksCount();
+        mAlbumsSongs.setText(StringUtils.formatAlbumsAndTracksDetails(albums, tracks));
+        mArtistBio.setText(artist.getDescription());
     }
 
     @Override

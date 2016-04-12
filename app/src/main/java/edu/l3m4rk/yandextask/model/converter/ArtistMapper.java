@@ -32,7 +32,7 @@ public final class ArtistMapper {
             List<String> genres = nwArtist.getGenres();
             final NWCover cover = nwArtist.getCover();
             String smallUrl = cover.getSmallCoverUrl();
-            String bigUrl = cover.getSmallCoverUrl();
+            String bigUrl = cover.getBigCoverUrl();
             artist = new Artist(id, name, tracks, albums, link, description, genres, smallUrl, bigUrl);
         }
         return artist;

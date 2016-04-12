@@ -26,4 +26,9 @@ public final class StringUtils {
     public static String formatGenres(List<String> genres) {
         return TextUtils.join(DELIMITER, genres);
     }
+
+    @NonNull
+    public static String formatAlbumsAndTracksDetails(int albums, int tracks) {
+        return String.format(App.getContext().getString(R.string.artist_details_albums_songs), albums, tracks);
+    }
 }

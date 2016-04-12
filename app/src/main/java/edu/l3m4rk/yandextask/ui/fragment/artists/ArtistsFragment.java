@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.l3m4rk.yandextask.R;
 import edu.l3m4rk.yandextask.controller.adapter.ArtistListAdapter;
+import edu.l3m4rk.yandextask.controller.db.ArtistHolder;
 import edu.l3m4rk.yandextask.controller.listener.RecyclerViewItemClickListener;
 import edu.l3m4rk.yandextask.model.db.Artist;
 import edu.l3m4rk.yandextask.presentation.artists.ArtistsPresenter;
@@ -80,7 +81,6 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
         initArtistsView();
         initProgressDialog();
         initTitle(getString(R.string.artists_title));
-//        ((BaseActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         mArtistsPresenter = new ArtistsPresenterImpl(this);
     }
 
@@ -102,7 +102,9 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
     @NonNull
     private RecyclerViewItemClickListener getListener() {
         return new RecyclerViewItemClickListener(getContext(), (View view, int position) -> {
-            final long selectedId = mAdapter.getItemAt(position).getId();
+            final Artist selectedItem = mAdapter.getItemAt(position);
+            ArtistHolder.getInstance().save(selectedItem);
+            final long selectedId = selectedItem.getId();
             Log.i(TAG, "getListener: id " + selectedId);
             mListener.onItemSelected(selectedId);
         });
