@@ -33,6 +33,8 @@ public final class MainActivity extends BaseActivity
 
     private void changeFragment(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out,
+                android.R.anim.fade_in, android.R.anim.fade_out);
         ft.replace(R.id.container_main, fragment);
         if (addToBackStack) {
             ft.addToBackStack(null);
