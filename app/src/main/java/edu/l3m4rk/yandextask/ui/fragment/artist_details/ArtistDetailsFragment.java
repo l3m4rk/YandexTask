@@ -16,9 +16,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.l3m4rk.yandextask.R;
 import edu.l3m4rk.yandextask.model.db.Artist;
-import edu.l3m4rk.yandextask.presentation.artist_details.ArtistDetailsPresenter;
-import edu.l3m4rk.yandextask.presentation.artist_details.ArtistDetailsPresenterImpl;
-import edu.l3m4rk.yandextask.presentation.view.ArtistDetailsView;
+import edu.l3m4rk.yandextask.presentation.presenter.artist_details.ArtistDetailsPresenter;
+import edu.l3m4rk.yandextask.presentation.implementation.artist_details.ArtistDetailsPresenterImpl;
+import edu.l3m4rk.yandextask.presentation.view.artist_details.ArtistDetailsView;
 import edu.l3m4rk.yandextask.ui.fragment.BaseFragment;
 import edu.l3m4rk.yandextask.util.StringUtils;
 

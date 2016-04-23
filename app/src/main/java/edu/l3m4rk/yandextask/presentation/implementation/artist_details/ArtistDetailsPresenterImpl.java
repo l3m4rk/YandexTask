@@ -1,9 +1,10 @@
-package edu.l3m4rk.yandextask.presentation.artist_details;
+package edu.l3m4rk.yandextask.presentation.implementation.artist_details;
 
 import edu.l3m4rk.yandextask.controller.db.InMemoryArtistRepository;
 import edu.l3m4rk.yandextask.controller.db.Repository;
 import edu.l3m4rk.yandextask.model.db.Artist;
-import edu.l3m4rk.yandextask.presentation.view.ArtistDetailsView;
+import edu.l3m4rk.yandextask.presentation.presenter.artist_details.ArtistDetailsPresenter;
+import edu.l3m4rk.yandextask.presentation.view.artist_details.ArtistDetailsView;
 
 public final class ArtistDetailsPresenterImpl implements ArtistDetailsPresenter {
 

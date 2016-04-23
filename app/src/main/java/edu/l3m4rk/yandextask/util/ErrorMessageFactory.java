@@ -13,8 +13,12 @@ public final class ErrorMessageFactory {
 
     @NonNull
     public static String createFromResponse(Response response) {
-        // TODO: 08.04.16 parse response for error
-        return "";
+         /*
+            здесь можно вытащить из ответа сервера объект ошибки
+            так как в задании не указан формат ошибки,
+            то выводим сообщение, игнорируя объект Response
+         */
+        return App.getContext().getString(R.string.error_content_loading);
     }
 
     @NonNull

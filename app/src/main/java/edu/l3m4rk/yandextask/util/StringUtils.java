@@ -1,10 +1,10 @@
 package edu.l3m4rk.yandextask.util;
 
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import java.util.List;
-import java.util.Locale;
 
 import edu.l3m4rk.yandextask.App;
 import edu.l3m4rk.yandextask.R;
@@ -18,8 +18,11 @@ public final class StringUtils {
     }
 
     @NonNull
-    public static String formatAlbumsAndTracks(int albumsCount, int tracksCount) {
-        return String.format(Locale.getDefault(), App.getContext().getString(R.string.artist_item_albums_songs), albumsCount, tracksCount);
+    public static String formatAlbumsAndTracks(int albumsCount, int songsCount) {
+        final Resources resources = App.getContext().getResources();
+        String albums = resources.getQuantityString(R.plurals.albums, albumsCount, albumsCount);
+        String songs = resources.getQuantityString(R.plurals.songs, songsCount, songsCount);
+        return App.getContext().getString(R.string.artist_item_albums_songs, albums, songs);
     }
 
     @NonNull
@@ -28,7 +31,10 @@ public final class StringUtils {
     }
 
     @NonNull
-    public static String formatAlbumsAndTracksDetails(int albums, int tracks) {
-        return String.format(App.getContext().getString(R.string.artist_details_albums_songs), albums, tracks);
+    public static String formatAlbumsAndTracksDetails(int albumsCount, int songsCount) {
+        final Resources resources = App.getContext().getResources();
+        String albums = resources.getQuantityString(R.plurals.albums, albumsCount, albumsCount);
+        String songs = resources.getQuantityString(R.plurals.songs, songsCount, songsCount);
+        return App.getContext().getString(R.string.artist_details_albums_songs, albums, songs);
     }
 }
