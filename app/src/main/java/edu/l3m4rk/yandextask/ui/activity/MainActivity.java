@@ -1,53 +1,59 @@
 package edu.l3m4rk.yandextask.ui.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 
 import edu.l3m4rk.yandextask.R;
+import edu.l3m4rk.yandextask.ui.fragment.artist_details.ArtistDetailsFragment;
+import edu.l3m4rk.yandextask.ui.fragment.artists.ArtistsFragment;
 
-public class MainActivity extends BaseActivity {
+public final class MainActivity extends BaseActivity
+        implements ArtistsFragment.OnItemSelectedListener,
+        FragmentManager.OnBackStackChangedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initToolbar();
+        getSupportFragmentManager().addOnBackStackChangedListener(this);
+        if (savedInstanceState == null) {
+            changeFragment(ArtistsFragment.newInstance(), false);
+        }
+    }
+
+    private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private void changeFragment(Fragment fragment, boolean addToBackStack) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out,
+                android.R.anim.fade_in, android.R.anim.fade_out);
+        ft.replace(R.id.container_main, fragment);
+        if (addToBackStack) {
+            ft.addToBackStack(null);
         }
+        ft.commit();
+    }
 
-        return super.onOptionsItemSelected(item);
+    @Override
+    public void onItemSelected(long selectedId) {
+        changeFragment(ArtistDetailsFragment.newInstance(selectedId), true);
+    }
+
+    @Override
+    public void onBackStackChanged() {
+        FragmentManager fm = getSupportFragmentManager();
+        ActionBar toolbar = getSupportActionBar();
+        final boolean showHomeAsUp = fm.getBackStackEntryCount() > 0;
+        if (toolbar != null) {
+            toolbar.setDisplayHomeAsUpEnabled(showHomeAsUp);
+        }
     }
 }
