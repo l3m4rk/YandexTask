@@ -11,8 +11,6 @@ public interface ArtistsView extends BaseView {
 
     void showArtists(@NonNull List<Artist> artists);
 
-    void showLoadError(@NonNull String message);
-
     void showEmpty();
 
 }

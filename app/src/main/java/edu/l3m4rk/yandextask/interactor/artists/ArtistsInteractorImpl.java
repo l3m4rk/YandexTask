@@ -16,14 +16,16 @@ import retrofit2.Response;
 
 public final class ArtistsInteractorImpl implements ArtistsInteractor {
 
-    private final Call<JsonArray> mArtistCall;
+    private final ServerApi mServerApi;
+    private Call<JsonArray> mArtistCall;
 
     public ArtistsInteractorImpl(@NonNull ServerApi serverApi) {
-        mArtistCall = serverApi.getArtists();
+        mServerApi = serverApi;
     }
 
     @Override
     public void get(LoadedCallback callback) {
+        mArtistCall = mServerApi.getArtists();
         mArtistCall.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
@@ -37,14 +39,16 @@ public final class ArtistsInteractorImpl implements ArtistsInteractor {
 
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
-                callback.onError(ErrorMessageFactory.createNetworkFail());
+                if (!call.isCanceled()) {
+                    callback.onError(ErrorMessageFactory.createNetworkFail());
+                }
             }
         });
     }
 
     @Override
     public void stop() {
-        if (mArtistCall.isExecuted() && !mArtistCall.isCanceled()) {
+        if (mArtistCall != null) {
             mArtistCall.cancel();
         }
     }

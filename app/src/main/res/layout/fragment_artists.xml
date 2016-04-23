@@ -6,7 +6,7 @@
     tools:context=".ui.fragment.artists.ArtistsFragment">
 
     <RelativeLayout
-        android:id="@+id/artist_list_empty"
+        android:id="@+id/artist_list_load_error"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

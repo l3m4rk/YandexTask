@@ -38,7 +38,6 @@ public final class ArtistsPresenterImpl implements ArtistsPresenter {
             mView.showArtists(mRepository.getAll());
             return;
         }
-
         mArtistsInteractor.get(new ArtistsInteractor.LoadedCallback() {
             @Override
             public void onLoaded(List<NWArtist> items) {

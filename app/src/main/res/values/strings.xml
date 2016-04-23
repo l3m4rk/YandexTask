@@ -2,12 +2,21 @@
     <string name="app_name">YandexTask</string>
     <string name="action_settings">Settings</string>
     <string name="artists_title">Artists</string>
-    <string name="artist_item_albums_songs">%1$d albums, %2$d songs</string>
+    <string name="artist_item_albums_songs">%1$s, %2$s</string>
     <string name="error_network_connection">Network connection error</string>
     <string name="retry_title">Try again</string>
     <string name="error_artists_loading">Artists loading failed</string>
     <string name="dialog_loading">Loading…</string>
     <string name="artist_details_bio">Biography</string>
-    <string name="artist_details_albums_songs">%1$d albums  \u2022  %2$d songs</string>
+    <string name="artist_details_albums_songs">%1$s  \u2022  %2$s</string>
     <string name="error_content_loading">Error loading content</string>
+    <string name="error_dialog_title">Error</string>
+    <plurals name="songs">
+        <item quantity="one">%d song</item>
+        <item quantity="many">%d songs</item>
+    </plurals>
+    <plurals name="albums">
+        <item quantity="one">%d album</item>
+        <item quantity="many">%d albums</item>
+    </plurals>
 </resources>

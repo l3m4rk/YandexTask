@@ -21,8 +21,8 @@ import edu.l3m4rk.yandextask.R;
 import edu.l3m4rk.yandextask.controller.adapter.ArtistListAdapter;
 import edu.l3m4rk.yandextask.controller.listener.RecyclerViewItemClickListener;
 import edu.l3m4rk.yandextask.model.db.Artist;
-import edu.l3m4rk.yandextask.presentation.presenter.artists.ArtistsPresenter;
 import edu.l3m4rk.yandextask.presentation.implementation.artists.ArtistsPresenterImpl;
+import edu.l3m4rk.yandextask.presentation.presenter.artists.ArtistsPresenter;
 import edu.l3m4rk.yandextask.presentation.view.artists.ArtistsView;
 import edu.l3m4rk.yandextask.ui.fragment.BaseFragment;
 import edu.l3m4rk.yandextask.ui.view.DividerItemDecoration;
@@ -33,7 +33,7 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
 
     @Bind(R.id.artist_list)
     RecyclerView mArtistsView;
-    @Bind(R.id.artist_list_empty)
+    @Bind(R.id.artist_list_load_error)
     View mLoadErrorView;
     private ArtistListAdapter mAdapter;
     private ArtistsPresenter mArtistsPresenter;
@@ -128,14 +128,17 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
     }
 
     @Override
-    public void showLoadError(@NonNull String message) {
+    public void showError(@NonNull String message) {
         mLoadErrorView.setVisibility(View.VISIBLE);
         mArtistsView.setVisibility(View.GONE);
     }
 
     @Override
     public void showEmpty() {
-        // TODO: 08.04.16 show empty view
+        /*
+        здесь можно показывать что-то на пустом экране,
+        если у список артистов вдруг пуст
+         */
     }
 
     @Override
@@ -146,12 +149,6 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
     @Override
     public void hideProgress() {
         mProgressDialog.dismiss();
-    }
-
-    @Override
-    public void showError(@NonNull String message) {
-        // TODO: 08.04.16 show error dialog
-        showToastMessage(message);
     }
 
     @Override
