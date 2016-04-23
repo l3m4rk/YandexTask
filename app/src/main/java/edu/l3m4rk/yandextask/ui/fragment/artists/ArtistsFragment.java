@@ -21,9 +21,9 @@ import edu.l3m4rk.yandextask.R;
 import edu.l3m4rk.yandextask.controller.adapter.ArtistListAdapter;
 import edu.l3m4rk.yandextask.controller.listener.RecyclerViewItemClickListener;
 import edu.l3m4rk.yandextask.model.db.Artist;
-import edu.l3m4rk.yandextask.presentation.artists.ArtistsPresenter;
-import edu.l3m4rk.yandextask.presentation.artists.ArtistsPresenterImpl;
-import edu.l3m4rk.yandextask.presentation.view.ArtistsView;
+import edu.l3m4rk.yandextask.presentation.presenter.artists.ArtistsPresenter;
+import edu.l3m4rk.yandextask.presentation.implementation.artists.ArtistsPresenterImpl;
+import edu.l3m4rk.yandextask.presentation.view.artists.ArtistsView;
 import edu.l3m4rk.yandextask.ui.fragment.BaseFragment;
 import edu.l3m4rk.yandextask.ui.view.DividerItemDecoration;
 
@@ -152,6 +152,12 @@ public final class ArtistsFragment extends BaseFragment implements ArtistsView {
     public void showError(@NonNull String message) {
         // TODO: 08.04.16 show error dialog
         showToastMessage(message);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mArtistsPresenter.stopLoad();
     }
 
     @Override

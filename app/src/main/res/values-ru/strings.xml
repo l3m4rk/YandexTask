@@ -10,4 +10,5 @@
     <string name="dialog_loading">Загрузка…</string>
     <string name="artist_details_bio">Биография</string>
     <string name="artist_details_albums_songs">%1$d альбомов  \u2022  %2$d песен</string>
+    <string name="error_content_loading">Произошла ошибка загрузки</string>
 </resources>
